@@ -5,15 +5,33 @@
   'use strict';
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
 
-  /* ---------- Sticky header shadow ---------- */
-  var header = document.getElementById('header');
-  function onScroll() {
-    if (window.scrollY > 8) header.classList.add('is-stuck');
-    else header.classList.remove('is-stuck');
+  /* ---------- Lazy background images ----------
+     Any element with data-bg gets its background-image applied only when it
+     scrolls into view. Put a real URL in data-bg (e.g. data-bg="assets/img/hero.jpg").
+     The value "placeholder" is a stand-in that keeps the CSS placeholder look. */
+  function loadBg(el) {
+    var src = el.getAttribute('data-bg');
+    if (!src || src === 'placeholder') return;      // no real image yet — keep placeholder
+    var img = new Image();
+    img.onload = function () {
+      el.style.backgroundImage = 'url("' + src + '")';
+      el.classList.add('is-loaded');
+    };
+    img.src = src;
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  var bgEls = document.querySelectorAll('[data-bg]');
+  if (!hasIO) {
+    bgEls.forEach(loadBg);
+  } else {
+    var bgIO = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { loadBg(e.target); obs.unobserve(e.target); }
+      });
+    }, { rootMargin: '200px 0px' });
+    bgEls.forEach(function (el) { bgIO.observe(el); });
+  }
 
   /* ---------- Mobile menu ---------- */
   var burger = document.getElementById('burger');
@@ -36,165 +54,89 @@
     overlay.classList.remove('is-visible');
     document.body.style.overflow = '';
     setTimeout(function () { overlay.hidden = true; }, 300);
-    // collapse open submenus
-    document.querySelectorAll('.has-mega.is-open').forEach(function (el) {
-      el.classList.remove('is-open');
-      var b = el.querySelector('.nav__link');
-      if (b) b.setAttribute('aria-expanded', 'false');
-    });
   }
-  burger.addEventListener('click', function () {
-    nav.classList.contains('is-open') ? closeMenu() : openMenu();
-  });
-  overlay.addEventListener('click', closeMenu);
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && nav.classList.contains('is-open')) closeMenu();
-  });
-
-  /* ---------- Mega-menu toggles (accessible) ---------- */
-  document.querySelectorAll('.has-mega > .nav__link').forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      // On mobile: toggle accordion. On desktop hover handles it, but click also works.
-      if (mqMobile.matches) {
-        e.preventDefault();
-        var parent = btn.parentElement;
-        var isOpen = parent.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      }
+  if (burger) {
+    burger.addEventListener('click', function () {
+      nav.classList.contains('is-open') ? closeMenu() : openMenu();
     });
-  });
+    overlay.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) closeMenu();
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a[href]') && mqMobile.matches) closeMenu();
+    });
+    mqMobile.addEventListener('change', function () { if (!mqMobile.matches) closeMenu(); });
+  }
 
-  // Close mobile menu when a real link is clicked
-  nav.addEventListener('click', function (e) {
-    var link = e.target.closest('a[href]');
-    if (link && mqMobile.matches) closeMenu();
-  });
+  /* ---------- Hero typing effect ---------- */
+  var typedEl = document.getElementById('typed');
+  var caretEl = document.getElementById('caret');
+  if (typedEl && !reduceMotion) {
+    var phrases = ['Дизайнерский ремонт', 'Ремонт под ключ', 'Капитальный ремонт', 'Ремонт в новостройке'];
+    var pi = 0, ci = 0, deleting = false;
+    // start from the phrase already in the DOM
+    ci = phrases[0].length;
+    function tick() {
+      var word = phrases[pi];
+      if (!deleting) {
+        ci++;
+        typedEl.textContent = word.slice(0, ci);
+        if (ci >= word.length) { deleting = true; return setTimeout(tick, 1600); }
+      } else {
+        ci--;
+        typedEl.textContent = word.slice(0, ci);
+        if (ci <= 0) { deleting = false; pi = (pi + 1) % phrases.length; return setTimeout(tick, 260); }
+      }
+      setTimeout(tick, deleting ? 45 : 85);
+    }
+    setTimeout(tick, 1800);
+  }
 
-  // Reset state when crossing breakpoint
-  mqMobile.addEventListener('change', function () {
-    if (!mqMobile.matches) closeMenu();
-  });
-
-  /* ---------- Scroll reveal ---------- */
+  /* ---------- Scroll reveal (with stagger) ---------- */
   var revealEls = document.querySelectorAll('.reveal');
-  if (reduceMotion || !('IntersectionObserver' in window)) {
+  if (reduceMotion || !hasIO) {
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   } else {
     var io = new IntersectionObserver(function (entries, obs) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target);
-        }
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    // Stagger siblings within the same grid for a nicer effect
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(function (el) {
-      var parent = el.parentElement;
-      var sibs = Array.prototype.filter.call(parent.children, function (c) { return c.classList.contains('reveal'); });
+      var sibs = Array.prototype.filter.call(el.parentElement.children, function (c) { return c.classList.contains('reveal'); });
       var idx = sibs.indexOf(el);
-      if (idx > 0 && sibs.length > 1) el.style.transitionDelay = Math.min(idx * 60, 300) + 'ms';
+      if (idx > 0 && sibs.length > 1) el.style.transitionDelay = Math.min(idx * 55, 300) + 'ms';
       io.observe(el);
     });
   }
 
-  /* ---------- Count-up stats ---------- */
-  var counters = document.querySelectorAll('[data-count]');
-  function animateCount(el) {
-    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
-    if (reduceMotion) { el.textContent = target.toLocaleString('ru-RU'); return; }
-    var duration = 1400, start = null;
-    function frame(ts) {
-      if (!start) start = ts;
-      var p = Math.min((ts - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
-      el.textContent = Math.round(target * eased).toLocaleString('ru-RU');
-      if (p < 1) requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-  }
-  if ('IntersectionObserver' in window) {
-    var cio = new IntersectionObserver(function (entries, obs) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) { animateCount(entry.target); obs.unobserve(entry.target); }
-      });
-    }, { threshold: 0.6 });
-    counters.forEach(function (c) { cio.observe(c); });
-  } else {
-    counters.forEach(animateCount);
-  }
-
-  /* ---------- FAQ: close others (single-open accordion) ---------- */
-  var faqItems = document.querySelectorAll('.faq__item');
+  /* ---------- FAQ single-open ---------- */
+  var faqItems = document.querySelectorAll('.faq2__item');
   faqItems.forEach(function (item) {
     item.addEventListener('toggle', function () {
-      if (item.open) {
-        faqItems.forEach(function (other) { if (other !== item) other.open = false; });
-      }
+      if (item.open) faqItems.forEach(function (o) { if (o !== item) o.open = false; });
     });
   });
 
-  /* ---------- Phone mask (light) ---------- */
-  var phone = document.getElementById('phone');
-  if (phone) {
-    phone.addEventListener('input', function () {
-      var d = phone.value.replace(/\D/g, '');
-      if (d.startsWith('8')) d = '7' + d.slice(1);
-      if (!d.startsWith('7')) d = '7' + d;
-      d = d.slice(0, 11);
-      var out = '+7';
-      if (d.length > 1) out += ' (' + d.slice(1, 4);
-      if (d.length >= 4) out += ') ' + d.slice(4, 7);
-      if (d.length >= 7) out += '-' + d.slice(7, 9);
-      if (d.length >= 9) out += '-' + d.slice(9, 11);
-      phone.value = out;
-    });
+  /* ---------- Scroll-spy: highlight active nav link ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__link'));
+  var sections = navLinks
+    .map(function (a) { var id = a.getAttribute('href'); return id && id.charAt(0) === '#' ? document.querySelector(id) : null; })
+    .filter(Boolean);
+  if (hasIO && sections.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          navLinks.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href') === '#' + e.target.id); });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(function (s) { spy.observe(s); });
   }
 
-  /* ---------- Lead form validation ---------- */
-  var form = document.getElementById('leadForm');
-  if (form) {
-    var success = document.getElementById('formSuccess');
-
-    function setError(name, msg) {
-      var field = form.querySelector('[name="' + name + '"]').closest('.field');
-      var err = form.querySelector('.field__error[data-for="' + name + '"]');
-      if (msg) { field.classList.add('is-invalid'); if (err) err.textContent = msg; }
-      else { field.classList.remove('is-invalid'); if (err) err.textContent = ''; }
-    }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var ok = true;
-      var name = form.name.value.trim();
-      var digits = form.phone.value.replace(/\D/g, '');
-
-      if (name.length < 2) { setError('name', 'Пожалуйста, укажите имя'); ok = false; }
-      else setError('name', '');
-
-      if (digits.length < 11) { setError('phone', 'Введите корректный номер телефона'); ok = false; }
-      else setError('phone', '');
-
-      if (!ok) {
-        var firstInvalid = form.querySelector('.field.is-invalid input');
-        if (firstInvalid) firstInvalid.focus();
-        return;
-      }
-
-      // Demo: no backend on a static presentation site.
-      form.querySelectorAll('.field, button[type="submit"], .cta__policy').forEach(function (el) { el.style.display = 'none'; });
-      success.hidden = false;
-      success.setAttribute('role', 'status');
-    });
-
-    // Clear error on input
-    ['name', 'phone'].forEach(function (n) {
-      form[n].addEventListener('input', function () { setError(n, ''); });
-    });
-  }
-
-  /* ---------- Smooth-scroll offset for sticky header ---------- */
+  /* ---------- Smooth scroll with sticky-header offset ---------- */
+  var hdr = document.getElementById('hdr');
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var id = a.getAttribute('href');
@@ -202,7 +144,8 @@
       var target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      var top = target.getBoundingClientRect().top + window.scrollY - (header.offsetHeight + 12);
+      var offset = (hdr ? hdr.offsetHeight : 0) + 12;
+      var top = target.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
   });
