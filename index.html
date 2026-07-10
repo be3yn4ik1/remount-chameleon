@@ -15,6 +15,26 @@
 
 <a class="skip-link" href="#main">Перейти к содержимому</a>
 
+<!-- Icon sprite (unique gradient ids, referenced via <use>) -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-max" x1="0" y1="534" x2="522" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0.14" stop-color="#43C3FD"/><stop offset="0.4" stop-color="#3254ED"/><stop offset="0.87" stop-color="#8849E5"/>
+    </linearGradient>
+    <linearGradient id="g-tg" x1="0" y1="534" x2="522" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#43C3FD"/><stop offset="0.735577" stop-color="#3254ED"/>
+    </linearGradient>
+  </defs>
+  <symbol id="ic-max" viewBox="0 0 522 534">
+    <rect width="522" height="534" rx="110" fill="url(#g-max)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M264.009 425.816C232.495 425.816 217.85 421.216 192.394 402.814C176.292 423.516 125.303 439.694 123.079 412.015C123.079 391.236 118.479 373.677 113.265 354.508C107.054 330.892 100 304.592 100 266.485C100 175.471 174.682 107 263.165 107C351.725 107 421.116 178.845 421.116 267.328C421.414 354.443 351.123 425.351 264.009 425.816ZM265.312 185.669C222.221 183.445 188.637 213.272 181.199 260.044C175.065 298.765 185.953 345.92 195.231 348.374C199.678 349.447 210.873 340.4 217.85 333.422C229.388 341.393 242.823 346.18 256.801 347.301C301.451 349.448 339.603 315.456 342.601 270.855C344.346 226.16 309.968 188.303 265.312 185.746V185.669Z" fill="white"/>
+  </symbol>
+  <symbol id="ic-tg" viewBox="0 0 522 534">
+    <rect width="522" height="534" rx="110" fill="url(#g-tg)"/>
+    <path d="M70.2984 282.839L157.251 312.368L363.711 186.151C366.708 184.328 369.773 188.392 367.194 190.769L210.895 334.633L205.089 415.172C204.994 416.521 205.312 417.867 205.999 419.032C206.687 420.197 207.713 421.124 208.94 421.693C210.167 422.261 211.538 422.443 212.871 422.214C214.204 421.985 215.436 421.356 216.404 420.411L264.525 373.086L352.504 439.678C361.982 446.861 375.714 441.798 378.266 430.187L439.524 152.045C443.021 136.18 427.467 122.786 412.304 128.592L69.8664 259.724C59.1188 263.842 59.4158 279.14 70.2984 282.839Z" fill="white"/>
+  </symbol>
+</svg>
+
 <div class="page">
 
   <!-- ============ HEADER ============ -->
@@ -30,9 +50,8 @@
       <div class="hdr__contact">
         <div class="messengers" aria-label="Мессенджеры">
           <span class="online"><i></i>Задайте вопрос,<br>мы онлайн</span>
-          <a class="msgr msgr--wa" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.9-2.7-1.2-4.4-4-4.5-4.2-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.2.1.4.1.6-.1l.9-1c.2-.2.3-.2.6-.1l1.9.9c.3.2.5.3.6.4.1.2.1.7-.1 1.3Z" fill="#fff"/></svg></a>
-          <a class="msgr msgr--vb" href="#" aria-label="Viber"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 3c-3.8 0-6.9 2.5-6.9 6.4 0 2.2.9 3.9 2.6 5.1v3l2.7-1.5c.5.1 1 .1 1.6.1 3.8 0 6.9-2.5 6.9-6.4S15.8 3 12 3Z" fill="#fff"/></svg></a>
-          <a class="msgr msgr--tg" href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="m3 11.5 17-6.6c.8-.3 1.5.2 1.3 1.4l-2.9 13.6c-.2.9-.8 1.1-1.5.7l-4.2-3.1-2 2c-.2.2-.4.4-.9.4l.3-4.4 8-7.2c.3-.3-.1-.5-.5-.2l-9.9 6.2-4.2-1.3c-.9-.3-.9-.9.2-1.3Z" fill="#fff"/></svg></a>
+          <a class="msgr" href="#" aria-label="MAX"><svg aria-hidden="true"><use href="#ic-max"/></svg></a>
+          <a class="msgr" href="#" aria-label="Telegram"><svg aria-hidden="true"><use href="#ic-tg"/></svg></a>
         </div>
         <div class="hdr__phone-wrap">
           <a class="hdr__phone" href="tel:+74950000000">+7 (495) 000-00-00</a>
@@ -46,12 +65,108 @@
     </div>
 
     <nav class="nav" id="nav" aria-label="Главное меню">
+      <button class="nav__close" id="navClose" aria-label="Закрыть меню">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
       <div class="container nav__inner">
         <a href="#hero" class="nav__link is-active">Главная</a>
-        <a href="#services" class="nav__link">Услуги</a>
-        <a href="#pricing" class="nav__link">Цены</a>
-        <a href="#process" class="nav__link">Как заказать</a>
-        <a href="#reviews" class="nav__link">Отзывы</a>
+
+        <div class="nav__item has-drop">
+          <button class="nav__link nav__toggle" aria-expanded="false">Услуги
+            <svg class="nav__caret" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="drop">
+            <div class="drop__col">
+              <span class="drop__title">По типу работ</span>
+              <a href="remont-pod-klyuch-v-moskve.html">Ремонт под ключ</a>
+              <a href="kosmeticheskiy-remont-kvartiry.html">Косметический ремонт</a>
+              <a href="kapitalnyy-remont-kvartiry.html">Капитальный ремонт</a>
+              <a href="chernovoy-remont-kvartir.html">Черновой ремонт</a>
+              <a href="otdelka-kvartir-v-moskve.html">Отделка квартир</a>
+              <a href="sovremennyy-remont-kvartiry.html">Современный ремонт</a>
+            </div>
+            <div class="drop__col">
+              <span class="drop__title">Дизайн</span>
+              <a href="dizaynerskiy-remont-kvartiry.html">Дизайнерский ремонт</a>
+              <a href="dizayn-i-remont-kvartir-v-moskve.html">Дизайн и ремонт</a>
+              <a href="dizayn-interyera-i-remont-kvartiry.html">Дизайн интерьера</a>
+              <a href="remont-elitnyh-kvartir.html">Ремонт элитных квартир</a>
+            </div>
+            <div class="drop__col">
+              <span class="drop__title">Помещения</span>
+              <a href="remont-vanny-v-kvartire.html">Ремонт ванной</a>
+              <a href="remont-koridora-v-kvartire.html">Ремонт коридора</a>
+              <a href="remont-komnaty-v-kvartire.html">Ремонт комнаты</a>
+              <a href="uslugi-remonta-kvartir.html">Все услуги</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav__item has-drop">
+          <button class="nav__link nav__toggle" aria-expanded="false">Типы квартир
+            <svg class="nav__caret" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="drop">
+            <div class="drop__col">
+              <span class="drop__title">По комнатам</span>
+              <a href="remont-1-komnatnoy-kvartiry.html">Однокомнатная</a>
+              <a href="remont-dvuhkomnatnoy-kvartiry.html">Двухкомнатная</a>
+              <a href="remont-trehkomnatnoy-kvartiry.html">Трёхкомнатная</a>
+              <a href="remont-4-komnatnoy-kvartiry.html">Четырёхкомнатная</a>
+              <a href="remont-kvartiry-studii.html">Квартира-студия</a>
+            </div>
+            <div class="drop__col">
+              <span class="drop__title">По типу дома</span>
+              <a href="remont-kvartiry-v-novostroyke.html">В новостройке</a>
+              <a href="remont-novostroyki-pod-klyuch.html">Новостройка под ключ</a>
+              <a href="remont-vtorichnogo-zhilya-v-moskve.html">Вторичное жильё</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav__item has-drop">
+          <button class="nav__link nav__toggle" aria-expanded="false">Цены
+            <svg class="nav__caret" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="drop">
+            <div class="drop__col">
+              <span class="drop__title">Расчёт стоимости</span>
+              <a href="kalkulyator-remonta-kvartiry.html">Калькулятор ремонта</a>
+              <a href="skolko-stoit-remont-kvartiry.html">Сколько стоит ремонт</a>
+              <a href="cena-remonta-kvartiry-za-1m2.html">Цена за 1 м²</a>
+              <a href="srednyaya-stoimost-remonta-kvartiry.html">Средняя стоимость</a>
+            </div>
+            <div class="drop__col">
+              <span class="drop__title">Выгодные цены</span>
+              <a href="nedorogoy-remont-kvartiry-v-moskve.html">Недорогой ремонт</a>
+              <a href="remont-kvartir-nedorogo-v-moskve.html">Ремонт недорого</a>
+              <a href="stoimost-remonta-kvartiry-pod-klyuch.html">Стоимость под ключ</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav__item has-drop">
+          <button class="nav__link nav__toggle" aria-expanded="false">Компания
+            <svg class="nav__caret" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="drop drop--narrow">
+            <div class="drop__col">
+              <span class="drop__title">О нас</span>
+              <a href="kompaniya-po-remontu-kvartir.html">О компании</a>
+              <a href="master-po-remontu-kvartir.html">Наши мастера</a>
+              <a href="remont-kvartiry-bez-posrednikov.html">Без посредников</a>
+              <a href="professionalnyy-remont-kvartir.html">Профессиональный подход</a>
+            </div>
+            <div class="drop__col">
+              <span class="drop__title">Разделы</span>
+              <a href="#services">Услуги</a>
+              <a href="#pricing">Цены</a>
+              <a href="#reviews">Отзывы</a>
+              <a href="#faq">Вопросы и ответы</a>
+            </div>
+          </div>
+        </div>
+
         <a href="#contacts" class="nav__link">Контакты</a>
       </div>
     </nav>
@@ -189,9 +304,8 @@
                 <span class="hdr__hours"><b class="tag-online">Online</b> Ежедневно с 08:00 до 22:00</span>
                 <span class="online online--dark"><i></i>Задайте вопрос,<br>мы онлайн</span>
                 <span class="msgr-row">
-                  <a class="msgr msgr--wa" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.9-2.7-1.2-4.4-4-4.5-4.2-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.2.1.4.1.6-.1l.9-1c.2-.2.3-.2.6-.1l1.9.9c.3.2.5.3.6.4.1.2.1.7-.1 1.3Z" fill="#fff"/></svg></a>
-                  <a class="msgr msgr--vb" href="#" aria-label="Viber"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3c-3.8 0-6.9 2.5-6.9 6.4 0 2.2.9 3.9 2.6 5.1v3l2.7-1.5c.5.1 1 .1 1.6.1 3.8 0 6.9-2.5 6.9-6.4S15.8 3 12 3Z" fill="#fff"/></svg></a>
-                  <a class="msgr msgr--tg" href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="m3 11.5 17-6.6c.8-.3 1.5.2 1.3 1.4l-2.9 13.6c-.2.9-.8 1.1-1.5.7l-4.2-3.1-2 2c-.2.2-.4.4-.9.4l.3-4.4 8-7.2c.3-.3-.1-.5-.5-.2l-9.9 6.2-4.2-1.3c-.9-.3-.9-.9.2-1.3Z" fill="#fff"/></svg></a>
+                  <a class="msgr" href="#" aria-label="MAX"><svg aria-hidden="true"><use href="#ic-max"/></svg></a>
+                  <a class="msgr" href="#" aria-label="Telegram"><svg aria-hidden="true"><use href="#ic-tg"/></svg></a>
                 </span>
               </div>
             </div>
@@ -338,9 +452,8 @@
                 <span class="hdr__hours"><b class="tag-online">Online</b> Ежедневно с 08:00 до 22:00</span>
                 <span class="online online--dark"><i></i>Задайте вопрос,<br>мы онлайн</span>
                 <span class="msgr-row">
-                  <a class="msgr msgr--wa" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.9-2.7-1.2-4.4-4-4.5-4.2-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.2.1.4.1.6-.1l.9-1c.2-.2.3-.2.6-.1l1.9.9c.3.2.5.3.6.4.1.2.1.7-.1 1.3Z" fill="#fff"/></svg></a>
-                  <a class="msgr msgr--vb" href="#" aria-label="Viber"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3c-3.8 0-6.9 2.5-6.9 6.4 0 2.2.9 3.9 2.6 5.1v3l2.7-1.5c.5.1 1 .1 1.6.1 3.8 0 6.9-2.5 6.9-6.4S15.8 3 12 3Z" fill="#fff"/></svg></a>
-                  <a class="msgr msgr--tg" href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="m3 11.5 17-6.6c.8-.3 1.5.2 1.3 1.4l-2.9 13.6c-.2.9-.8 1.1-1.5.7l-4.2-3.1-2 2c-.2.2-.4.4-.9.4l.3-4.4 8-7.2c.3-.3-.1-.5-.5-.2l-9.9 6.2-4.2-1.3c-.9-.3-.9-.9.2-1.3Z" fill="#fff"/></svg></a>
+                  <a class="msgr" href="#" aria-label="MAX"><svg aria-hidden="true"><use href="#ic-max"/></svg></a>
+                  <a class="msgr" href="#" aria-label="Telegram"><svg aria-hidden="true"><use href="#ic-tg"/></svg></a>
                 </span>
               </div>
             </div>
@@ -415,9 +528,8 @@
             <span class="hdr__hours"><b class="tag-online">Online</b> Ежедневно с 08:00 до 22:00</span>
             <div class="contacts__msgr">
               <span class="online online--dark"><i></i>Задайте вопрос,<br>мы онлайн</span>
-              <a class="msgr msgr--wa" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.9-2.7-1.2-4.4-4-4.5-4.2-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.2.1.4.1.6-.1l.9-1c.2-.2.3-.2.6-.1l1.9.9c.3.2.5.3.6.4.1.2.1.7-.1 1.3Z" fill="#fff"/></svg></a>
-              <a class="msgr msgr--vb" href="#" aria-label="Viber"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 3c-3.8 0-6.9 2.5-6.9 6.4 0 2.2.9 3.9 2.6 5.1v3l2.7-1.5c.5.1 1 .1 1.6.1 3.8 0 6.9-2.5 6.9-6.4S15.8 3 12 3Z" fill="#fff"/></svg></a>
-              <a class="msgr msgr--tg" href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="m3 11.5 17-6.6c.8-.3 1.5.2 1.3 1.4l-2.9 13.6c-.2.9-.8 1.1-1.5.7l-4.2-3.1-2 2c-.2.2-.4.4-.9.4l.3-4.4 8-7.2c.3-.3-.1-.5-.5-.2l-9.9 6.2-4.2-1.3c-.9-.3-.9-.9.2-1.3Z" fill="#fff"/></svg></a>
+              <a class="msgr" href="#" aria-label="MAX"><svg aria-hidden="true"><use href="#ic-max"/></svg></a>
+              <a class="msgr" href="#" aria-label="Telegram"><svg aria-hidden="true"><use href="#ic-tg"/></svg></a>
             </div>
           </div>
         </div>

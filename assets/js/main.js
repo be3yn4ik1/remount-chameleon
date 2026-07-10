@@ -66,8 +66,32 @@
     nav.addEventListener('click', function (e) {
       if (e.target.closest('a[href]') && mqMobile.matches) closeMenu();
     });
-    mqMobile.addEventListener('change', function () { if (!mqMobile.matches) closeMenu(); });
+    mqMobile.addEventListener('change', function () {
+      if (!mqMobile.matches) {
+        closeMenu();
+        // collapse mobile accordions when returning to desktop
+        document.querySelectorAll('.has-drop.is-open').forEach(function (el) {
+          el.classList.remove('is-open');
+          var t = el.querySelector('.nav__toggle');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+
+    var navClose = document.getElementById('navClose');
+    if (navClose) navClose.addEventListener('click', closeMenu);
   }
+
+  /* ---------- Category dropdowns: accordion on mobile ---------- */
+  document.querySelectorAll('.nav__toggle').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      if (!mqMobile.matches) return;              // desktop uses hover
+      e.preventDefault();
+      var item = btn.parentElement;
+      var open = item.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
 
   /* ---------- Hero typing effect ---------- */
   var typedEl = document.getElementById('typed');
