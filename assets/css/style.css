@@ -356,6 +356,8 @@ ul,ol { margin:0; padding:0; list-style:none; }
 .foot { background:#fff; }
 .foot__inner { display:grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap:28px; padding-top:40px; padding-bottom:40px; border-top:1px solid var(--line); align-items:start; }
 .foot__brand p { margin-top:14px; font-size:13.5px; color:var(--ink-soft); max-width:260px; }
+.foot__sitemap { display:inline-block; margin-top:14px; font-size:13px; font-weight:600; color:var(--brand); }
+.foot__sitemap:hover { text-decoration:underline; }
 .foot__title { display:block; font-weight:800; text-transform:uppercase; font-size:13px; color:var(--ink); margin-bottom:14px; letter-spacing:.02em; }
 .foot__col a { display:block; padding:5px 0; font-size:14px; color:var(--ink-soft); transition: color var(--dur), transform var(--dur); }
 .foot__col a:hover { color:var(--brand); transform:translateX(3px); }
@@ -418,6 +420,74 @@ ul,ol { margin:0; padding:0; list-style:none; }
   .rev-google { margin-left:0; }
   .dark-block { margin:20px 12px; }
   .foot__inner { grid-template-columns:1fr; }
+}
+
+/* ============================================================
+   Inner article pages (breadcrumb, page hero, prose typography)
+   ============================================================ */
+.breadcrumb { display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:13.5px; color:var(--ink-soft); margin-bottom:18px; }
+.breadcrumb a { color:var(--ink-soft); font-weight:600; transition:color var(--dur); }
+.breadcrumb a:hover { color:var(--brand); }
+.breadcrumb__sep { color:#c3cbd8; }
+.breadcrumb__current { color:var(--ink); font-weight:700; }
+
+.page-hero { padding: 34px 0 clamp(36px,5vw,56px); }
+.page-hero__inner { display:grid; grid-template-columns: 1.15fr .85fr; gap:40px; align-items:center; }
+.page-hero__title { font-size: clamp(2rem, 4.2vw, 3.1rem); }
+.page-hero__lead { margin-top:18px; font-size:1.1rem; color:var(--ink-soft); max-width:640px; }
+.page-hero__media { width:100%; aspect-ratio: 4/3; border-radius: var(--r-xl); box-shadow: var(--sh-lg); }
+
+.article { padding: 8px 0 clamp(40px,6vw,64px); }
+.prose { max-width: 780px; margin: 0 auto; }
+.prose > * + * { margin-top: 20px; }
+.prose p { color: var(--ink-2); font-size: 1.03rem; line-height: 1.75; }
+.prose h2 {
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 800; color: var(--ink);
+  margin-top: 44px; padding-top: 4px; letter-spacing: -.01em;
+}
+.prose h2:first-child { margin-top: 0; }
+.prose ul { display:flex; flex-direction:column; gap:12px; padding: 4px 0; }
+.prose ul li {
+  position:relative; padding-left: 30px; color: var(--ink-2); font-size: 1.02rem; line-height: 1.6;
+}
+.prose ul li::before {
+  content:""; position:absolute; left:0; top:9px; width:14px; height:14px; border-radius:5px;
+  background: var(--brand-grad);
+}
+.prose strong { color: var(--ink); }
+
+.article-cta { margin-top: clamp(40px,6vw,64px); }
+
+@media (max-width:900px){
+  .page-hero__inner { grid-template-columns:1fr; gap:26px; }
+  .page-hero__media { max-width:420px; margin:0 auto; order:-1; }
+}
+@media (max-width:640px){
+  .page-hero { padding-top:22px; }
+  .prose h2 { margin-top:34px; }
+}
+
+/* ---------- Sitemap ---------- */
+.sitemap { padding: 8px 0 clamp(40px,6vw,64px); }
+.sitemap-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 36px 32px; }
+.sitemap-col { }
+.sitemap-col__title {
+  display:flex; align-items:center; gap:10px; font-size:15px; font-weight:800; text-transform:uppercase;
+  letter-spacing:.03em; color:var(--ink); margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid var(--color-tint);
+}
+.sitemap-col ul { display:flex; flex-direction:column; gap:2px; }
+.sitemap-col a {
+  display:block; padding:9px 10px; margin:0 -10px; border-radius:8px; font-size:15px; font-weight:600;
+  color:var(--ink-2); transition: background var(--dur), color var(--dur), transform var(--dur);
+}
+.sitemap-col a:hover { background: var(--gray-50); color: var(--brand); transform: translateX(3px); }
+.sitemap-col a.is-home { font-weight:800; color:var(--brand); }
+
+@media (max-width:900px){
+  .sitemap-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width:640px){
+  .sitemap-grid { grid-template-columns: 1fr; }
 }
 
 /* ---------- Reduced motion ---------- */
