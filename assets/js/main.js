@@ -77,9 +77,6 @@
         });
       }
     });
-
-    var navClose = document.getElementById('navClose');
-    if (navClose) navClose.addEventListener('click', closeMenu);
   }
 
   /* ---------- Category dropdowns: accordion on mobile ---------- */
