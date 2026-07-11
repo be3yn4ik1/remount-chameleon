@@ -333,7 +333,7 @@ ul,ol { margin:0; padding:0; list-style:none; }
 .rev { background:#fff; border-radius: var(--r-lg); padding:24px; }
 .rev__head { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
 .rev__ava { width:44px; height:44px; border-radius:50%; background: var(--brand-grad); color:#fff; font-weight:800; display:grid; place-items:center; flex:none; }
-span.rev__ava { color: #fff; }
+.rev-grid span.rev__ava { color: #fff; }
 .rev__head b { display:block; color:var(--ink); font-size:15px; }
 .rev__head span { font-size:12px; color:var(--ink-soft); }
 .rev__stars { color:#f6b93b; letter-spacing:1px; font-size:15px; margin-bottom:10px; }
