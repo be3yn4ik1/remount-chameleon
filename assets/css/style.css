@@ -214,7 +214,7 @@ ul,ol { margin:0; padding:0; list-style:none; }
 /* Track holds two identical lists back-to-back; translating by exactly -50%
    is seamless because every item (incl. the boundary one) carries the same
    trailing margin instead of a flex `gap`, so both halves are equal width. */
-.clients__track { display:flex; align-items:center; width:max-content; animation: clients-marquee 30s linear infinite; }
+.clients__track { display:flex; align-items:center; width:max-content; animation: clients-marquee 90s linear infinite; }
 .clients__marquee:hover .clients__track { animation-play-state: paused; }
 @keyframes clients-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
