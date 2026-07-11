@@ -33,6 +33,13 @@
     bgEls.forEach(function (el) { bgIO.observe(el); });
   }
 
+  /* ---------- Client logos: fall back to the dashed placeholder box
+     until real files are dropped into img/brandlogo/ ---------- */
+  document.querySelectorAll('.clients__logo img').forEach(function (img) {
+    img.addEventListener('load', function () { img.closest('.clients__logo').classList.add('has-img'); });
+    img.addEventListener('error', function () { img.remove(); });
+  });
+
   /* ---------- Mobile menu ---------- */
   var burger = document.getElementById('burger');
   var nav = document.getElementById('nav');
