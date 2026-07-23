@@ -291,8 +291,88 @@
         <div class="price-extra" style="grid-template-columns:1fr">
           <div class="price-note reveal">
             <p>Цены примерные и актуальны для Москвы. Точную смету мастер подтвердит после бесплатного замера — стоимость фиксируется в договоре и не меняется в процессе работ.</p>
-            <a class="btn btn--dark btn--lg" href="index.html#calc">Рассчитать мой ремонт</a>
+            <a class="btn btn--dark btn--lg" href="#calc">Рассчитать мой ремонт</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUIZ CALCULATOR ============ -->
+    <section class="quiz" id="calc">
+      <div class="container">
+        <div class="quiz__box reveal">
+          <div class="quiz__intro">
+            <span class="promo__eyebrow">Бесплатный расчёт за 30 секунд</span>
+            <h2 class="h-heavy">Рассчитайте свой ремонт</h2>
+            <p>Ответьте на 4 коротких вопроса — покажем примерную стоимость ремонта вашей квартиры в Москве.</p>
+          </div>
+
+          <form class="quiz__panel" id="quizForm" novalidate>
+            <div class="quiz__progress"><span class="quiz__progress-bar" id="quizProgress" style="width:20%"></span></div>
+
+            <div class="quiz__step is-active" data-step="1">
+              <h3>Какой тип ремонта вам нужен?</h3>
+              <div class="quiz__options" data-field="type">
+                <button type="button" class="quiz__option" data-value="cosmetic">Косметический</button>
+                <button type="button" class="quiz__option" data-value="capital">Капитальный</button>
+                <button type="button" class="quiz__option" data-value="turnkey">Под ключ</button>
+                <button type="button" class="quiz__option" data-value="design">Дизайнерский</button>
+              </div>
+            </div>
+
+            <div class="quiz__step" data-step="2">
+              <h3>Сколько комнат в квартире?</h3>
+              <div class="quiz__options" data-field="rooms">
+                <button type="button" class="quiz__option" data-value="1">1 комната</button>
+                <button type="button" class="quiz__option" data-value="2">2 комнаты</button>
+                <button type="button" class="quiz__option" data-value="3">3 комнаты</button>
+                <button type="button" class="quiz__option" data-value="4">4 и более</button>
+              </div>
+            </div>
+
+            <div class="quiz__step" data-step="3">
+              <h3>Какая площадь квартиры?</h3>
+              <div class="quiz__options" data-field="area">
+                <button type="button" class="quiz__option" data-value="30">до 30 м²</button>
+                <button type="button" class="quiz__option" data-value="50">30–50 м²</button>
+                <button type="button" class="quiz__option" data-value="70">50–70 м²</button>
+                <button type="button" class="quiz__option" data-value="100">70–100 м²</button>
+                <button type="button" class="quiz__option" data-value="120">более 100 м²</button>
+              </div>
+            </div>
+
+            <div class="quiz__step" data-step="4">
+              <h3>Текущее состояние квартиры?</h3>
+              <div class="quiz__options" data-field="condition">
+                <button type="button" class="quiz__option" data-value="shell">Черновая отделка / новостройка</button>
+                <button type="button" class="quiz__option" data-value="old">Требует полного обновления</button>
+                <button type="button" class="quiz__option" data-value="good">Хорошее состояние, нужна косметика</button>
+              </div>
+            </div>
+
+            <div class="quiz__step" data-step="5">
+              <h3>Куда прислать расчёт?</h3>
+              <p class="quiz__hint">Покажем вилку цены и свяжемся, чтобы уточнить детали и подтвердить точную смету.</p>
+              <div class="quiz__form">
+                <input type="text" name="name" id="quizName" placeholder="Ваше имя" autocomplete="name" required>
+                <input type="tel" name="phone" id="quizPhone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
+                <button type="submit" class="btn btn--primary btn--lg btn--block">Показать расчёт</button>
+              </div>
+            </div>
+
+            <div class="quiz__step" data-step="result">
+              <div class="quiz__result">
+                <span class="quiz__result-label">Примерная стоимость вашего ремонта</span>
+                <span class="quiz__result-price" id="quizResultPrice">—</span>
+                <p>Спасибо<span id="quizResultName"></span>! Это предварительный расчёт. Наш менеджер свяжется с вами в ближайшее время, чтобы уточнить детали и подтвердить точную смету.</p>
+                <a class="btn btn--dark btn--lg" href="tel:+74950000000">Позвонить сейчас</a>
+              </div>
+            </div>
+
+            <div class="quiz__nav">
+              <button type="button" class="quiz__back" id="quizBack" hidden>← Назад</button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -386,19 +466,6 @@
               </div>
             </div>
           </a>
-          <a class="blog-card reveal" href="blog/skolko-stoit-remont-kvartir-pod-klyuch.html">
-            <div class="ph blog-card__media" data-bg="img/remont/otdelka-chernovye-raboty.jpg" data-label="Фото · 480×300"></div>
-            <div class="blog-card__body">
-              <h3 class="blog-card__title">Сколько стоит ремонт квартир под ключ?</h3>
-              <p class="blog-card__excerpt">Разбираем, из чего формируется стоимость ремонта под ключ и как не переплатить.</p>
-              <div class="blog-card__foot">
-                <span class="blog-card__read">Читать статью</span>
-                <span class="blog-card__arrow" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </div>
-            </div>
-          </a>
         </div>
       </div>
     </section>
@@ -456,13 +523,6 @@
       </nav>
     </div>
   </footer>
-
-</div><!-- /.page -->
-
-<a class="fab" href="index.html#calc" aria-label="Онлайн-расчёт">
-  <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm1 4h8M8 11h2m3 0h3m-8 4h2m3 0h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</a>
-
 
 </div><!-- /.page -->
 
