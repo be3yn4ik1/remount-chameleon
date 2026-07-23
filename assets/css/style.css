@@ -275,6 +275,8 @@ ul,ol { margin:0; padding:0; list-style:none; }
 .pricing { padding: 40px 0; }
 .pricing__title { margin-bottom:34px; }
 .price-grid { display:grid; grid-template-columns: repeat(4,1fr); gap:20px; }
+.price-grid--2 { grid-template-columns: repeat(2,1fr); }
+.price-grid--3 { grid-template-columns: repeat(3,1fr); }
 .pcard { position:relative; background: var(--gray-50); border-radius: var(--r-lg); padding:22px; overflow:hidden; display:flex; flex-direction:column; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
 .pcard:hover { transform: translateY(-5px); box-shadow: var(--sh-md); background:#fff; }
 .pcard__ghost { position:absolute; right:12px; top:2px; font-size:5.4rem; font-weight:900; color:rgba(21,145,220,.10); line-height:1; pointer-events:none; z-index:0; }
@@ -455,6 +457,11 @@ ul,ol { margin:0; padding:0; list-style:none; }
   background: var(--brand-grad);
 }
 .prose strong { color: var(--ink); }
+
+.cta-box { background: var(--gray-50); border-radius: var(--r-lg); padding: 26px 30px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.cta-box p { color: var(--ink-2); font-size: 1rem; margin:0; flex:1; min-width:220px; }
+.cta-box p strong { display:block; color: var(--ink); font-size:1.05rem; margin-bottom:4px; }
+.cta-box .btn { flex:none; }
 
 .article-cta { margin-top: clamp(40px,6vw,64px); }
 
