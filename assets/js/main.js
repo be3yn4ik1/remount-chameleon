@@ -177,4 +177,80 @@
       window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
   });
+
+  /* ---------- Quiz calculator ----------
+     Multi-step: тип ремонта → комнаты → площадь → состояние → контакты → результат.
+     Price is only revealed after the contact step is submitted. */
+  var quizForm = document.getElementById('quizForm');
+  if (quizForm) {
+    var quizSteps = Array.prototype.slice.call(quizForm.querySelectorAll('.quiz__step'));
+    var quizProgress = document.getElementById('quizProgress');
+    var quizBack = document.getElementById('quizBack');
+    var quizAnswers = {};
+    var quizStepIndex = 0; // index into quizSteps
+
+    function quizShow(idx) {
+      quizSteps.forEach(function (s, i) { s.classList.toggle('is-active', i === idx); });
+      quizStepIndex = idx;
+      var pct = Math.min(((idx + 1) / quizSteps.length) * 100, 100);
+      quizProgress.style.width = pct + '%';
+      quizBack.hidden = idx === 0 || quizSteps[idx].dataset.step === 'result';
+    }
+
+    quizForm.querySelectorAll('.quiz__options').forEach(function (group) {
+      group.addEventListener('click', function (e) {
+        var btn = e.target.closest('.quiz__option');
+        if (!btn) return;
+        var field = group.getAttribute('data-field');
+        quizAnswers[field] = btn.getAttribute('data-value');
+        Array.prototype.forEach.call(group.children, function (o) { o.classList.remove('is-selected'); });
+        btn.classList.add('is-selected');
+        setTimeout(function () {
+          if (quizStepIndex < quizSteps.length - 1) quizShow(quizStepIndex + 1);
+        }, 220);
+      });
+    });
+
+    quizBack.addEventListener('click', function () {
+      if (quizStepIndex > 0) quizShow(quizStepIndex - 1);
+    });
+
+    function quizCalc(a) {
+      var rates = {
+        cosmetic: [4900, 6500], capital: [7500, 10000], turnkey: [6500, 9500], design: [15000, 22000]
+      };
+      var areaMap = { '30': 25, '50': 40, '70': 60, '100': 85, '120': 110 };
+      var conditionMult = { shell: 0.9, old: 1.15, good: 1 };
+      var r = rates[a.type] || rates.turnkey;
+      var area = areaMap[a.area] || 40;
+      var mult = conditionMult[a.condition] || 1;
+      var min = Math.round((r[0] * area * mult) / 1000) * 1000;
+      var max = Math.round((r[1] * area * mult) / 1000) * 1000;
+      return { min: min, max: max };
+    }
+
+    function fmtRub(n) { return n.toLocaleString('ru-RU') + ' ₽'; }
+
+    quizForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nameEl = document.getElementById('quizName');
+      var phoneEl = document.getElementById('quizPhone');
+      if (!nameEl.value.trim() || !phoneEl.value.trim()) {
+        (nameEl.value.trim() ? phoneEl : nameEl).focus();
+        return;
+      }
+      quizAnswers.name = nameEl.value.trim();
+      quizAnswers.phone = phoneEl.value.trim();
+
+      var price = quizCalc(quizAnswers);
+      document.getElementById('quizResultPrice').textContent = fmtRub(price.min) + ' — ' + fmtRub(price.max);
+      var nameSpan = document.getElementById('quizResultName');
+      nameSpan.textContent = quizAnswers.name ? ', ' + quizAnswers.name : '';
+
+      var resultIdx = quizSteps.findIndex(function (s) { return s.dataset.step === 'result'; });
+      quizShow(resultIdx);
+    });
+
+    quizShow(0);
+  }
 })();
