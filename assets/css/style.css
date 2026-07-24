@@ -311,6 +311,16 @@ ul,ol { margin:0; padding:0; list-style:none; }
 .price-note { align-self:center; padding: 10px 10px 10px 20px; }
 .price-note p { color:var(--ink-soft); font-size:15px; margin-bottom:20px; }
 
+/* Price table (rows list) */
+.price-table { background:#fff; border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--sh-sm); }
+.price-table__row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 24px; border-bottom:1px solid var(--line); }
+.price-table__row:last-child { border-bottom:0; }
+a.price-table__row { transition:background var(--dur) var(--ease); }
+a.price-table__row:hover { background:var(--gray-50); }
+.price-table__name { font-weight:800; color:var(--ink); font-size:15px; }
+.price-table__note { display:block; margin-top:2px; font-size:12.5px; font-weight:400; color:var(--ink-soft); }
+.price-table__price { font-weight:800; color:var(--brand); font-size:16px; white-space:nowrap; flex:none; }
+
 /* Process (dark) */
 .dark-block--process { }
 .process__title { margin-bottom:34px; }
