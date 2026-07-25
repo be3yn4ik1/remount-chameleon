@@ -365,6 +365,30 @@ a.price-table__row:hover { background:var(--gray-50); }
 .rev-foot { display:flex; align-items:center; gap:24px; }
 .rev-google { display:inline-flex; align-items:center; gap:10px; color:#cfd6e2; font-size:13px; font-weight:600; margin-left:auto; }
 .rev-google__g { width:34px; height:34px; border-radius:50%; background:#fff; color:#4285F4; font-weight:900; display:grid; place-items:center; }
+.rev-grid--9 { grid-template-columns: repeat(3,1fr); }
+.rev__meta { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.rev__stars--svg { display:inline-flex; align-items:center; gap:2px; }
+.rev__stars--svg svg { display:block; }
+.rev__ago { font-size:12px; color:var(--ink-soft); }
+.rev__tag { display:inline-block; margin-top:14px; padding:6px 12px; border-radius:999px; background:var(--blue-100); color:var(--brand); font-size:12px; font-weight:700; text-decoration:none; transition: background var(--dur) var(--ease), color var(--dur) var(--ease); }
+.rev__tag:hover { background:var(--brand); color:#fff; }
+.rating-badge { display:flex; align-items:center; gap:12px; margin-top:18px; flex-wrap:wrap; }
+.rating-badge__num { font-size:2rem; font-weight:900; color:var(--ink); line-height:1; }
+.rating-badge__count { font-size:13px; color:var(--ink-soft); flex-basis:100%; }
+@media (min-width:480px){ .rating-badge__count { flex-basis:auto; } }
+
+main [id] { scroll-margin-top: 100px; }
+
+.faq-toc { display:flex; flex-wrap:wrap; gap:10px; }
+.faq-toc__chip { padding:8px 16px; border-radius:999px; background:var(--gray-50); color:var(--ink); font-size:13px; font-weight:700; text-decoration:none; transition: background var(--dur) var(--ease), color var(--dur) var(--ease); }
+.faq-toc__chip:hover { background:var(--brand); color:#fff; }
+
+.faq-group__block { margin:0 0 40px; }
+.faq-group__block:last-child { margin-bottom:0; }
+.faq-group__head { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:16px; flex-wrap:wrap; }
+.faq-group__head h3 { font-size:1.2rem; font-weight:800; text-transform:uppercase; color:var(--ink); }
+.faq-group__link { font-size:13px; font-weight:700; color:var(--brand); text-decoration:none; white-space:nowrap; }
+.faq-group__link:hover { text-decoration:underline; }
 
 /* ---------- Contacts ---------- */
 .contacts { padding: 44px 0 20px; }
