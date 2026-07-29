@@ -398,6 +398,8 @@ main [id] { scroll-margin-top: 100px; }
 .contacts__addr { font-size: clamp(1.3rem,2.4vw,1.9rem); font-weight:900; text-transform:uppercase; color:var(--ink); line-height:1.1; }
 .contacts__phone { display:inline-block; font-size:1.7rem; font-weight:900; color:var(--ink); margin:22px 0 8px; }
 .contacts__phone:hover { color:var(--brand); }
+.contacts__email { display:block; font-size:15px; font-weight:600; color:var(--ink-soft); margin-bottom:12px; text-decoration:none; }
+.contacts__email:hover { color:var(--brand); }
 .contacts__msgr { display:flex; align-items:center; gap:10px; margin-top:22px; }
 
 /* ---------- Footer ---------- */
