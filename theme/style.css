@@ -1,0 +1,14 @@
+/*
+Theme Name: РемонтПрофи
+Theme URI: https://remont-profi.example
+Author: РемонтПрофи
+Author URI: https://remont-profi.example
+Description: Тема для сайта ремонта квартир под ключ в Москве. Собрана из готового HTML/CSS/JS макета, содержимое редактируется через ACF Pro (Options + поля на страницах и записях).
+Version: 1.0.0
+Requires PHP: 7.4
+Text Domain: remontprofi
+*/
+
+/* Основные стили подключаются из assets/css/style.css через wp_enqueue_style() в functions.php.
+   Этот файл оставлен по требованиям WordPress (обязательная шапка темы) и не должен использоваться
+   для добавления новых правил — редактируйте assets/css/style.css. */
