@@ -95,6 +95,27 @@ function rp_tel_href($phone_display) {
     return 'tel:+' . $digits;
 }
 
+/** Строка "широта, долгота" -> ['lat' => float, 'lng' => float] с дефолтом (центр Москвы). */
+function rp_map_coords_pair($raw) {
+    $default = ['lat' => 55.751244, 'lng' => 37.618423];
+    if (!is_string($raw) || trim($raw) === '') {
+        return $default;
+    }
+    $parts = array_map('trim', explode(',', $raw));
+    if (count($parts) !== 2 || !is_numeric($parts[0]) || !is_numeric($parts[1])) {
+        return $default;
+    }
+    return ['lat' => (float) $parts[0], 'lng' => (float) $parts[1]];
+}
+
+/** Ссылка на встраиваемый виджет Яндекс.Карт по координатам из ACF (options: map_coords). */
+function rp_map_embed_url() {
+    $coords = rp_map_coords_pair(rp_option('map_coords', ''));
+    $pt = $coords['lng'] . ',' . $coords['lat'] . ',pm2rdl';
+    $ll = $coords['lng'] . ',' . $coords['lat'];
+    return 'https://yandex.ru/map-widget/v1/?ll=' . rawurlencode($ll) . '&z=16&pt=' . rawurlencode($pt);
+}
+
 /**
  * Ссылка на страницу темы по её "ключу" (slug), которым она была создана при активации.
  * Возвращает permalink, либо '#', если страница ещё не создана (тема только что установлена

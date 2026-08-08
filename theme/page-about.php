@@ -17,6 +17,7 @@ $o_text = rp_field('o_kompanii_text', $d['o_kompanii_text'] ?? '');
 $features = rp_repeater('features', $d['features'] ?? []);
 $mastera_text = rp_field('mastera_text', $d['mastera_text'] ?? '');
 $bez_steps = rp_repeater('bez_posrednikov_steps', $d['bez_posrednikov_steps'] ?? []);
+$process_image = rp_image_url('process_image', rp_default_img('2151037570.jpg'));
 $pro_text = rp_field('professionalnyy_podhod_text', $d['professionalnyy_podhod_text'] ?? '');
 $faq = rp_repeater('faq', $d['faq'] ?? []);
 
@@ -83,7 +84,7 @@ $blog_links = [
       <ol class="steps2">
         <?php rp_render_steps($bez_steps); ?>
       </ol>
-      <div class="ph process__media" data-bg="<?php echo esc_url(rp_default_img('2151037570.jpg')); ?>" data-label="Фото · 520×520"></div>
+      <div class="ph process__media" data-bg="<?php echo esc_url($process_image); ?>" data-label="Фото · 520×520"></div>
     </div>
   </div>
 </section>

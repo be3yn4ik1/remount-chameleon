@@ -128,7 +128,9 @@ function rp_sc_contacts_block($atts = []) {
       <div class="container">
         <h2 class="h-heavy contacts__title"><?php echo esc_html(rp_field('contacts_title', 'Наши контакты', get_option('page_on_front'))); ?></h2>
         <div class="contacts__grid reveal">
-          <div class="ph contacts__map" data-bg="placeholder" data-label="Карта · 900×520"></div>
+          <div class="ph contacts__map">
+            <iframe src="<?php echo esc_url(rp_map_embed_url()); ?>" width="100%" height="100%" frameborder="0" style="border:0;display:block" loading="lazy" title="Карта — как нас найти"></iframe>
+          </div>
           <div class="contacts__info">
             <p class="contacts__addr"><?php echo wp_kses_post(nl2br(esc_html($address))); ?></p>
             <a class="contacts__phone" href="<?php echo esc_attr(rp_tel_href($phone)); ?>"><?php echo esc_html($phone); ?></a>

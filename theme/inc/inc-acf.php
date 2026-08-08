@@ -148,6 +148,7 @@ add_action('acf/init', function () {
             rp_f_text('field_rp_email', 'Email', 'email'),
             rp_f_text('field_rp_address', 'Адрес', 'address'),
             rp_f_text('field_rp_hours', 'Часы работы', 'work_hours'),
+            rp_f_text('field_rp_map_coords', 'Координаты на карте', 'map_coords', 'Широта и долгота через запятую, например: 55.751244, 37.618423 (взять можно из Яндекс.Карт: ПКМ по точке на карте → «Что здесь» → координаты внизу экрана)'),
 
             rp_f_tab('Мессенджеры', 'tab_rp_opt_msgr'),
             rp_f_url('field_rp_telegram', 'Ссылка на Telegram', 'telegram_url'),
@@ -328,6 +329,7 @@ add_action('acf/init', function () {
 
             rp_f_tab('Без посредников', 'tab_rp_about_bez'),
             rp_f_repeater_title_text('field_rp_about_bez_steps', 'Пункты', 'bez_posrednikov_steps'),
+            rp_f_image('field_rp_about_bez_img', 'Фото рядом со списком', 'process_image'),
 
             rp_f_tab('Профессиональный подход', 'tab_rp_about_pro'),
             rp_f_wysiwyg('field_rp_about_pro_text', 'Текст раздела', 'professionalnyy_podhod_text'),
