@@ -42,6 +42,7 @@ require_once RP_THEME_DIR . '/inc/inc-acf.php';
 require_once RP_THEME_DIR . '/inc/inc-shortcodes.php';
 require_once RP_THEME_DIR . '/inc/inc-post-types.php';
 require_once RP_THEME_DIR . '/inc/inc-activation.php';
+require_once RP_THEME_DIR . '/inc/inc-cleanup.php';
 
 /* ---------------------------------------------------------------
  * Misc

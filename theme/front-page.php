@@ -12,6 +12,8 @@ get_header();
 
 $hero_title = rp_field('hero_title', 'Ремонт квартир под ключ');
 $hero_subtitle = rp_field('hero_subtitle', 'Дизайнерский ремонт');
+$hero_image = rp_image_url('hero_image', rp_default_img('802.jpg'));
+$process_image = rp_image_url('process_image', rp_default_img('zakazremonta.jpg'));
 $services_title = rp_field('services_title', 'Делаем быстро и качественно');
 $pricing_title = rp_field('pricing_title', 'Стоимость услуг РемонтПрофи');
 $reviews_title = rp_field('reviews_title', 'Отзывы клиентов');
@@ -51,7 +53,7 @@ function rp_brand_logos_list($brands, $hide_alt = false) {
           <div class="hbadge"><span class="hbadge__pre">от</span><b>4 900₽</b><span class="hbadge__post">за м²</span><span class="hbadge__tag">под ключ</span></div>
           <div class="hbadge"><span class="hbadge__pre">от</span><b>24 ч</b><span class="hbadge__post">выезд замерщика</span></div>
         </div>
-        <div class="ph hero__photo" data-bg="<?php echo esc_url(rp_default_img('802.jpg')); ?>" data-label="Фото интерьера · 900×620" aria-hidden="true"></div>
+        <div class="ph hero__photo" data-bg="<?php echo esc_url($hero_image); ?>" data-label="Фото интерьера · 900×620" aria-hidden="true"></div>
       </div>
     </div>
   </div>
@@ -148,7 +150,7 @@ function rp_brand_logos_list($brands, $hide_alt = false) {
         <li class="step2 reveal"><div><h3>Делаем ремонт</h3><p>Работаем по графику и шлём фотоотчёты</p></div><span class="step2__n">5</span></li>
         <li class="step2 step2--hl reveal"><div><h3>Сдаём объект</h3><p>Принимаете готовую квартиру и гарантию</p></div><span class="step2__n">6</span></li>
       </ol>
-      <div class="ph process__media" data-bg="<?php echo esc_url(rp_default_img('zakazremonta.jpg')); ?>" data-label="Фото · 520×520"></div>
+      <div class="ph process__media" data-bg="<?php echo esc_url($process_image); ?>" data-label="Фото · 520×520"></div>
     </div>
   </div>
 </section>

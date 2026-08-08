@@ -175,9 +175,13 @@ add_action('acf/init', function () {
             rp_f_tab('Первый экран (Hero)', 'tab_rp_home_hero'),
             rp_f_text('field_rp_home_hero_title', 'Заголовок', 'hero_title'),
             rp_f_textarea('field_rp_home_hero_sub', 'Подзаголовок', 'hero_subtitle', '', 3),
+            rp_f_image('field_rp_home_hero_img', 'Фото в первом экране', 'hero_image'),
 
             rp_f_tab('Блок: Услуги', 'tab_rp_home_services'),
             rp_f_text('field_rp_home_services_title', 'Заголовок блока', 'services_title'),
+
+            rp_f_tab('Блок: Как заказать', 'tab_rp_home_process'),
+            rp_f_image('field_rp_home_process_img', 'Фото в блоке «Заказать ремонт легко»', 'process_image'),
 
             rp_f_tab('Блок: Цены', 'tab_rp_home_pricing'),
             rp_f_text('field_rp_home_pricing_title', 'Заголовок блока', 'pricing_title'),
