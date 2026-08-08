@@ -103,6 +103,7 @@ ul,ol { margin:0; padding:0; list-style:none; }
 .brand { display:inline-flex; flex-direction:column; gap:2px; }
 .brand__logo { display:flex; flex-direction:column; gap:0; line-height:1.1; font-weight:900; font-size:22px; letter-spacing:-.02em; text-transform:uppercase; color:var(--ink); }
 .brand__logo span { color: var(--brand); }
+.brand__logo svg { display:block; height:40px; width:auto; }
 .brand__logo--light { color:#fff; } .brand__logo--light span { color: var(--brand); }
 .brand__slogan { display:none; }
 
