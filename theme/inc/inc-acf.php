@@ -407,3 +407,24 @@ add_action('acf/init', function () {
         'location' => [[['param' => 'post_type', 'operator' => '==', 'value' => 'post']]],
     ]);
 });
+
+/* ---------------------------------------------------------------
+ * SEO: title и description — на каждой странице и записи блога
+ * ------------------------------------------------------------- */
+add_action('acf/init', function () {
+    acf_add_local_field_group([
+        'key' => 'group_rp_seo',
+        'title' => 'SEO',
+        'fields' => [
+            rp_f_text('field_rp_seo_title', 'SEO Title (заголовок в поисковой выдаче и вкладке браузера)', 'seo_title', 'Если оставить пустым — используется заголовок по умолчанию.'),
+            rp_f_textarea('field_rp_seo_description', 'Meta Description (описание в поисковой выдаче)', 'seo_description', 'Если оставить пустым — используется описание по умолчанию. Рекомендуется 150–160 символов.', 3),
+        ],
+        'location' => [
+            [['param' => 'post_type', 'operator' => '==', 'value' => 'page']],
+            [['param' => 'post_type', 'operator' => '==', 'value' => 'post']],
+        ],
+        'position' => 'normal',
+        'style' => 'default',
+        'menu_order' => 0,
+    ]);
+});

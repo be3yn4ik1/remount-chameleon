@@ -220,6 +220,38 @@ function rp_blog_defaults($slug = null) {
     return $indexed[$slug] ?? [];
 }
 
+/** SEO title страницы/записи (ACF-поле seo_title, иначе дефолт из кода — перенесённый со статичного сайта). */
+function rp_seo_title($post = null) {
+    $post = get_post($post);
+    if (!$post) {
+        return get_bloginfo('name');
+    }
+    if ($post->post_type === 'post') {
+        $defaults = rp_blog_defaults($post->post_name);
+        $default_title = trim(($defaults['title'] ?? get_the_title($post)) . ' — Блог РемонтПрофи');
+    } else {
+        $seo = rp_get_data('seo')[$post->post_name] ?? [];
+        $default_title = $seo['title'] ?? get_the_title($post);
+    }
+    return rp_field('seo_title', $default_title, $post->ID);
+}
+
+/** SEO meta description страницы/записи (ACF-поле seo_description, иначе дефолт из кода). */
+function rp_seo_description($post = null) {
+    $post = get_post($post);
+    if (!$post) {
+        return '';
+    }
+    if ($post->post_type === 'post') {
+        $defaults = rp_blog_defaults($post->post_name);
+        $default_desc = $defaults['meta_description'] ?? '';
+    } else {
+        $seo = rp_get_data('seo')[$post->post_name] ?? [];
+        $default_desc = $seo['description'] ?? '';
+    }
+    return rp_field('seo_description', $default_desc, $post->ID);
+}
+
 /** H1 страницы (ACF-переопределение, иначе дефолт из кода, иначе заголовок записи). */
 function rp_page_h1($post) {
     $post = get_post($post);

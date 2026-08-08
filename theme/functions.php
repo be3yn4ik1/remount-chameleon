@@ -54,5 +54,24 @@ function rp_noindex() {
 }
 add_action('wp_head', 'rp_noindex', 1);
 
+// SEO title (<title>) — ACF-поле seo_title, иначе дефолт из кода. Полностью заменяет
+// стандартную склейку WordPress «Заголовок — Название сайта», т.к. нужный текст уже
+// перенесён из <title> исходного статического сайта целиком.
+add_filter('pre_get_document_title', function ($title) {
+    if (is_singular() || is_home()) {
+        return rp_seo_title(get_queried_object());
+    }
+    return $title;
+});
+
+// SEO meta description — ACF-поле seo_description, иначе дефолт из кода.
+function rp_seo_meta_description() {
+    if (!is_singular() && !is_home()) return;
+    $description = rp_seo_description(get_queried_object());
+    if ($description === '') return;
+    echo '<meta name="description" content="' . esc_attr($description) . '">' . "\n";
+}
+add_action('wp_head', 'rp_seo_meta_description', 2);
+
 // Отключаем автогенерацию нескольких размеров картинок — на сайте используются оригиналы.
 add_filter('big_image_size_threshold', '__return_false');
