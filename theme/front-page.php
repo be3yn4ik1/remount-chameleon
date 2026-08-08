@@ -21,7 +21,7 @@ $reviews_title = rp_field('reviews_title', 'Отзывы клиентов');
 $prices_d = rp_get_data('prices');
 $pricing_cards = $prices_d['skolko_pcards'] ?? [];
 
-$brands = ['BIHUI.png', 'Bergauf.png', 'DeWalt.jpg', 'Dufa.webp', 'EKF.png', 'Grohe-logo.png', 'Hansgrohe.jpg', 'Hilti.jpg', 'IEK.jpg', 'INGCO.png', 'Kermi.jpg', 'Kärcher.png', 'Legrand.png', 'Leica.png', 'Litokol.jpg', 'MAPEI.jpg', 'Makita.jpg', 'Metabo.png', 'Milwaukee.png', 'RUBI.png', 'Sika.png', 'Soudal.png', 'Stanley.png', 'Tarkett.jpg', 'Tesa.jpg', 'Uponor.svg', 'Viega_Logo.svg', 'ceresit.png', 'festool.webp', 'knauf.jpg', 'pattex-logo.webp', 'tytan.png', 'weber.png'];
+$brands = ['BIHUI.png', 'Bergauf.png', 'DeWalt.jpg', 'Dufa.webp', 'EKF.png', 'Grohe-logo.png', 'Hansgrohe.jpg', 'Hilti.jpg', 'IEK.jpg', 'INGCO.png', 'Kermi.jpg', 'Karcher.png', 'Legrand.png', 'Leica.png', 'Litokol.jpg', 'MAPEI.jpg', 'Makita.jpg', 'Metabo.png', 'Milwaukee.png', 'RUBI.png', 'Sika.png', 'Soudal.png', 'Stanley.png', 'Tarkett.jpg', 'Tesa.jpg', 'Uponor.svg', 'Viega_Logo.svg', 'ceresit.png', 'festool.webp', 'knauf.jpg', 'pattex-logo.webp', 'tytan.png', 'weber.png'];
 
 function rp_brand_logos_list($brands, $hide_alt = false) {
     foreach ($brands as $file) {
